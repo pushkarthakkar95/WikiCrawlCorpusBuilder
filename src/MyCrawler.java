@@ -60,7 +60,11 @@ public class MyCrawler extends WebCrawler {
                 .getElementsByClass("mw-parser-output").get(0);
         List<Element> elementsOfAllParagraphs = element.getElementsByTag("p");
         for (Element paragraphs : elementsOfAllParagraphs){
-            result.add(paragraphs.text().replaceAll("\\p{Punct}",""));
+            result.add(paragraphs.text().replaceAll("]"," ")
+                                        .replaceAll("\\["," ")
+                                        .replaceAll("%","")
+            .replaceAll("\\.","")
+            .replaceAll(",",""));
         }
         return result;
     }
